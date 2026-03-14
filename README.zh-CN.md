@@ -1,8 +1,8 @@
-# A2A Protocol - Agent-to-Agent Communication Protocol
+# A2A Protocol - Agent 间通信协议
 
-English | [简体中文](README.zh-CN.md)
+[English](README.md) | 简体中文
 
-## Overview
+## 概述
 
 A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agents 可以互相发现、通信和协作。
 
@@ -17,16 +17,16 @@ A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agent
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     A2A Protocol Stack                       │
+│                     A2A 协议栈                               │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 3: Agent Logic (OpenClaw, AutoGPT, etc.)            │
+│  第三层: Agent 逻辑 (OpenClaw, AutoGPT 等)                  │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 2: A2A Protocol (Discovery + Messaging)              │
-│           - Agent Registry                                   │
-│           - Message Router                                   │
-│           - Task Protocol                                    │
+│  第二层: A2A 协议 (发现 + 消息传递)                         │
+│           - Agent 注册中心                                   │
+│           - 消息路由                                         │
+│           - 任务协议                                         │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 1: Transport (HTTP + WebSocket)                      │
+│  第一层: 传输层 (HTTP + WebSocket)                          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -40,7 +40,7 @@ A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agent
 - Capabilities (能力列表)
 - Endpoint (WebSocket 地址)
 
-### 2. Agent Registry
+### 2. Agent 注册中心
 
 中心化的注册服务（未来可去中心化）：
 - `POST /agents/register` - 注册 agent
@@ -63,7 +63,7 @@ A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agent
 npm install
 ```
 
-### 启动 Registry Server
+### 启动注册中心服务器
 
 ```bash
 npm run server
@@ -72,16 +72,16 @@ npm run server
 ### 运行示例 Agent
 
 ```bash
-# Terminal 1: 启动 Agent A
+# 终端 1: 启动 Agent A
 npm run agent:a
 
-# Terminal 2: 启动 Agent B
+# 终端 2: 启动 Agent B
 npm run agent:b
 ```
 
 ## 消息协议
 
-### Agent Profile
+### Agent 配置文件
 
 ```json
 {
@@ -94,7 +94,7 @@ npm run agent:b
 }
 ```
 
-### Message Format
+### 消息格式
 
 ```json
 {
@@ -102,14 +102,14 @@ npm run agent:b
   "from": "agent_abc123",
   "to": "agent_def456",
   "payload": {
-    "text": "Hello, can you help me with research?"
+    "text": "你好，能帮我做研究吗？"
   },
   "timestamp": "2026-03-15T01:53:00Z",
   "signature": "..."
 }
 ```
 
-### Task Request
+### 任务请求
 
 ```json
 {
@@ -118,14 +118,14 @@ npm run agent:b
   "to": "agent_def456",
   "task_id": "task_001",
   "payload": {
-    "task": "Analyze this market",
+    "task": "分析这个市场",
     "context": {...}
   },
   "timestamp": "2026-03-15T01:53:00Z"
 }
 ```
 
-### Task Response
+### 任务响应
 
 ```json
 {
@@ -148,7 +148,7 @@ npm run agent:b
 ```javascript
 // Agent A 搜索能做"research"的 agent
 const agents = await registry.search({ capability: 'research' });
-console.log('Found agents:', agents);
+console.log('找到的 agents:', agents);
 ```
 
 ### 场景 2: 发送消息
@@ -156,7 +156,7 @@ console.log('Found agents:', agents);
 ```javascript
 // Agent A 给 Agent B 发消息
 await agentA.sendMessage('agent_b_id', {
-  text: 'Can you help me analyze this data?'
+  text: '你能帮我分析这些数据吗？'
 });
 ```
 
@@ -168,7 +168,7 @@ const result = await agentA.requestTask('agent_b_id', {
   task: 'market_analysis',
   data: {...}
 });
-console.log('Task result:', result);
+console.log('任务结果:', result);
 ```
 
 ## 技术栈
@@ -186,6 +186,15 @@ console.log('Task result:', result);
 - [ ] Agent 信誉系统
 - [ ] 任务市场
 
-## License
+## 开源协议
 
 MIT
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 社区
+
+- GitHub: https://github.com/let5sne/a2a-protocol
+- Discord: [即将推出]
