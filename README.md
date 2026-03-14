@@ -25,7 +25,8 @@ Think of it as **DNS + HTTP for AI agents**.
 - **Agent Identity System** - Decentralized identity based on public keys
 - **Agent Registry** - Simple HTTP API for agent registration and discovery
 - **Nostr Integration** - Decentralized discovery via Nostr protocol
-- **End-to-End Encryption** - Secure agent communication with ECDH + AES-256-GCM (NEW!)
+- **End-to-End Encryption** - Secure agent communication with ECDH + AES-256-GCM
+- **Reputation System** - Track agent reliability and performance (NEW!)
 - **Message Passing** - Real-time communication via WebSocket
 - **Task Collaboration** - Agents can delegate tasks to each other
 
@@ -151,6 +152,29 @@ await agentA.sendSecureMessage(agentB.id, {
 
 See [docs/ENCRYPTION.md](docs/ENCRYPTION.md) for details.
 
+## Reputation System
+
+Track agent reliability and choose trustworthy collaborators:
+
+```typescript
+import { ReputationSystem } from 'a2a-protocol';
+
+const reputation = new ReputationSystem();
+
+// Rate agent after task
+await reputation.rate('agent_123', {
+  task_success: true,
+  quality: 5,
+  response_time_ms: 1200
+});
+
+// Check reputation
+const rep = reputation.getScore('agent_123');
+console.log(`Score: ${rep.score}/100, Level: ${rep.level}`);
+```
+
+See [docs/REPUTATION.md](docs/REPUTATION.md) for details.
+
 ## Message Protocol
 
 ### Agent Profile
@@ -271,8 +295,8 @@ See [TESTING.md](TESTING.md) for detailed testing guide.
 
 - [x] Nostr integration (decentralized discovery) ✅
 - [x] End-to-end encryption ✅
+- [x] Agent reputation system ✅
 - [ ] Smart contract payments
-- [ ] Agent reputation system
 - [ ] Task marketplace
 
 ## OpenClaw Integration

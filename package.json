@@ -14,6 +14,7 @@
     "agent:openclaw": "ts-node src/examples/openclaw-integration.ts",
     "agent:nostr": "ts-node src/examples/nostr-example.ts",
     "agent:secure": "ts-node src/examples/secure-agent.ts",
+    "agent:reputation": "ts-node src/examples/reputation-example.ts",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
