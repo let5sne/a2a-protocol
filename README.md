@@ -4,16 +4,16 @@ English | [简体中文](README.zh-CN.md)
 
 ## Overview
 
-A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agents 可以互相发现、通信和协作。
+A2A Protocol is a lightweight decentralized communication protocol that enables AI agents to discover, communicate, and collaborate with each other.
 
-## 核心特性
+## Core Features
 
-- **Agent 身份系统** - 基于公钥的去中心化身份
-- **Agent 注册中心** - 简单的 HTTP API，agent 可以注册和发现其他 agent
-- **消息传递** - WebSocket 实时通信
-- **任务协作** - Agent 可以互相委托任务
+- **Agent Identity System** - Decentralized identity based on public keys
+- **Agent Registry** - Simple HTTP API for agent registration and discovery
+- **Message Passing** - Real-time communication via WebSocket
+- **Task Collaboration** - Agents can delegate tasks to each other
 
-## 架构
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -30,56 +30,56 @@ A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agent
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## MVP 功能
+## MVP Features
 
-### 1. Agent 身份
+### 1. Agent Identity
 
-每个 agent 有：
-- Agent ID (公钥哈希)
-- Name (可读名称)
-- Capabilities (能力列表)
-- Endpoint (WebSocket 地址)
+Each agent has:
+- Agent ID (public key hash)
+- Name (human-readable name)
+- Capabilities (list of skills)
+- Endpoint (WebSocket address)
 
 ### 2. Agent Registry
 
-中心化的注册服务（未来可去中心化）：
-- `POST /agents/register` - 注册 agent
-- `GET /agents` - 列出所有 agent
-- `GET /agents/:id` - 获取 agent 信息
-- `POST /agents/search` - 搜索 agent
+Centralized registration service (can be decentralized in the future):
+- `POST /agents/register` - Register an agent
+- `GET /agents` - List all agents
+- `GET /agents/:id` - Get agent information
+- `GET /agents/search` - Search for agents
 
-### 3. 消息传递
+### 3. Message Passing
 
-通过 WebSocket 实时通信：
-- `message` - 发送消息
-- `task_request` - 请求任务
-- `task_response` - 返回结果
+Real-time communication via WebSocket:
+- `message` - Send a message
+- `task_request` - Request a task
+- `task_response` - Return result
 
-## 快速开始
+## Quick Start
 
-### 安装
+### Installation
 
 ```bash
 npm install
 ```
 
-### 启动 Registry Server
+### Start Registry Server
 
 ```bash
 npm run server
 ```
 
-### 运行示例 Agent
+### Run Example Agents
 
 ```bash
-# Terminal 1: 启动 Agent A
+# Terminal 1: Start Agent A
 npm run agent:a
 
-# Terminal 2: 启动 Agent B
+# Terminal 2: Start Agent B
 npm run agent:b
 ```
 
-## 消息协议
+## Message Protocol
 
 ### Agent Profile
 
@@ -141,29 +141,29 @@ npm run agent:b
 }
 ```
 
-## 示例场景
+## Example Scenarios
 
-### 场景 1: Agent 发现
+### Scenario 1: Agent Discovery
 
 ```javascript
-// Agent A 搜索能做"research"的 agent
+// Agent A searches for agents with "research" capability
 const agents = await registry.search({ capability: 'research' });
 console.log('Found agents:', agents);
 ```
 
-### 场景 2: 发送消息
+### Scenario 2: Send Message
 
 ```javascript
-// Agent A 给 Agent B 发消息
+// Agent A sends a message to Agent B
 await agentA.sendMessage('agent_b_id', {
   text: 'Can you help me analyze this data?'
 });
 ```
 
-### 场景 3: 任务委托
+### Scenario 3: Task Delegation
 
 ```javascript
-// Agent A 委托任务给 Agent B
+// Agent A delegates a task to Agent B
 const result = await agentA.requestTask('agent_b_id', {
   task: 'market_analysis',
   data: {...}
@@ -171,21 +171,30 @@ const result = await agentA.requestTask('agent_b_id', {
 console.log('Task result:', result);
 ```
 
-## 技术栈
+## Tech Stack
 
-- **Node.js** - 运行时
-- **Express** - HTTP 服务器
-- **ws** - WebSocket 库
-- **TypeScript** - 类型安全
+- **Node.js** - Runtime
+- **Express** - HTTP server
+- **ws** - WebSocket library
+- **TypeScript** - Type safety
 
-## 未来扩展
+## Future Extensions
 
-- [ ] 去中心化注册（DHT / Nostr）
-- [ ] 端到端加密
-- [ ] 智能合约支付
-- [ ] Agent 信誉系统
-- [ ] 任务市场
+- [ ] Decentralized registry (DHT / Nostr)
+- [ ] End-to-end encryption
+- [ ] Smart contract payments
+- [ ] Agent reputation system
+- [ ] Task marketplace
 
 ## License
 
 MIT
+
+## Contributing
+
+Issues and Pull Requests are welcome!
+
+## Community
+
+- GitHub: https://github.com/let5sne/a2a-protocol
+- Discord: [Coming soon]
