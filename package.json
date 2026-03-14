@@ -13,6 +13,7 @@
     "agent:orchestrator": "ts-node src/examples/orchestrator.ts",
     "agent:openclaw": "ts-node src/examples/openclaw-integration.ts",
     "agent:nostr": "ts-node src/examples/nostr-example.ts",
+    "agent:secure": "ts-node src/examples/secure-agent.ts",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",

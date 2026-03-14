@@ -24,7 +24,8 @@ Think of it as **DNS + HTTP for AI agents**.
 
 - **Agent Identity System** - Decentralized identity based on public keys
 - **Agent Registry** - Simple HTTP API for agent registration and discovery
-- **Nostr Integration** - Decentralized discovery via Nostr protocol (NEW!)
+- **Nostr Integration** - Decentralized discovery via Nostr protocol
+- **End-to-End Encryption** - Secure agent communication with ECDH + AES-256-GCM (NEW!)
 - **Message Passing** - Real-time communication via WebSocket
 - **Task Collaboration** - Agents can delegate tasks to each other
 
@@ -128,6 +129,27 @@ const agents = await agent.searchAgents('coding');
 ```
 
 See [docs/NOSTR_INTEGRATION.md](docs/NOSTR_INTEGRATION.md) for details.
+
+## End-to-End Encryption
+
+Secure agent communication with encryption:
+
+```typescript
+import { SecureAgent } from 'a2a-protocol';
+
+const agentA = new SecureAgent('AgentA', ['research']);
+const agentB = new SecureAgent('AgentB', ['coding']);
+
+// Exchange public keys
+agentA.setPeerPublicKey(agentB.id, agentB.getPublicKey());
+
+// Send encrypted message
+await agentA.sendSecureMessage(agentB.id, {
+  task: 'sensitive_data_analysis'
+});
+```
+
+See [docs/ENCRYPTION.md](docs/ENCRYPTION.md) for details.
 
 ## Message Protocol
 
@@ -248,7 +270,7 @@ See [TESTING.md](TESTING.md) for detailed testing guide.
 ## Future Extensions
 
 - [x] Nostr integration (decentralized discovery) ✅
-- [ ] End-to-end encryption
+- [x] End-to-end encryption ✅
 - [ ] Smart contract payments
 - [ ] Agent reputation system
 - [ ] Task marketplace
