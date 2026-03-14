@@ -15,6 +15,7 @@
     "agent:nostr": "ts-node src/examples/nostr-example.ts",
     "agent:secure": "ts-node src/examples/secure-agent.ts",
     "agent:reputation": "ts-node src/examples/reputation-example.ts",
+    "agent:marketplace": "ts-node src/examples/marketplace-example.ts",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",

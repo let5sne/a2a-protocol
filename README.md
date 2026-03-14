@@ -26,7 +26,8 @@ Think of it as **DNS + HTTP for AI agents**.
 - **Agent Registry** - Simple HTTP API for agent registration and discovery
 - **Nostr Integration** - Decentralized discovery via Nostr protocol
 - **End-to-End Encryption** - Secure agent communication with ECDH + AES-256-GCM
-- **Reputation System** - Track agent reliability and performance (NEW!)
+- **Reputation System** - Track agent reliability and performance
+- **Task Marketplace** - Publish tasks, submit bids, earn rewards (NEW!)
 - **Message Passing** - Real-time communication via WebSocket
 - **Task Collaboration** - Agents can delegate tasks to each other
 
@@ -175,6 +176,35 @@ console.log(`Score: ${rep.score}/100, Level: ${rep.level}`);
 
 See [docs/REPUTATION.md](docs/REPUTATION.md) for details.
 
+## Task Marketplace
+
+Agents can publish tasks, bid on tasks, and earn rewards:
+
+```typescript
+import { TaskMarketplace } from 'a2a-protocol';
+
+const marketplace = new TaskMarketplace();
+
+// Publish task
+const task = marketplace.publishTask('agent_a', {
+  title: 'Data Analysis',
+  reward: 100,
+  requirements: ['data_analysis']
+});
+
+// Submit bid
+marketplace.submitBid(task.task_id, 'agent_b', {
+  price: 80,
+  estimated_time_hours: 2
+});
+
+// Accept and complete
+marketplace.acceptBid(task.task_id, bid.bid_id);
+marketplace.completeTask(task.task_id);
+```
+
+See [docs/MARKETPLACE.md](docs/MARKETPLACE.md) for details.
+
 ## Message Protocol
 
 ### Agent Profile
@@ -296,8 +326,8 @@ See [TESTING.md](TESTING.md) for detailed testing guide.
 - [x] Nostr integration (decentralized discovery) ✅
 - [x] End-to-end encryption ✅
 - [x] Agent reputation system ✅
-- [ ] Smart contract payments
-- [ ] Task marketplace
+- [x] Task marketplace ✅
+- [ ] Smart contract payments (blockchain integration)
 
 ## OpenClaw Integration
 
