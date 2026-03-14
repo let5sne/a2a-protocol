@@ -26,7 +26,7 @@ export class Agent {
       })
     });
     
-    this.profile = await res.json();
+    this.profile = await res.json() as AgentProfile;
     console.log(`✅ Registered as ${this.profile!.name} (${this.profile!.agent_id})`);
     
     await this.connect();
@@ -133,7 +133,7 @@ export class Agent {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ capability })
     });
-    return res.json();
+    return res.json() as Promise<AgentProfile[]>;
   }
 
   getProfile(): AgentProfile | null {

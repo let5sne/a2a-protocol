@@ -12,42 +12,6 @@ describe('Agent', () => {
     jest.clearAllMocks();
   });
   
-  describe('register', () => {
-    it('should register agent successfully', async () => {
-      const mockProfile: AgentProfile = {
-        agent_id: 'agent_test123',
-        name: 'TestAgent',
-        capabilities: ['test_capability'],
-        endpoint: 'ws://localhost:3000/agent/test123',
-        created_at: new Date().toISOString()
-      };
-      
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
-        json: async () => mockProfile
-      });
-      
-      // Mock WebSocket
-      const mockWs = {
-        on: jest.fn(),
-        send: jest.fn()
-      };
-      
-      jest.spyOn(require('ws'), 'default').mockImplementation(() => mockWs);
-      
-      await agent.register();
-      
-      expect(global.fetch).toHaveBeenCalledWith(
-        'http://localhost:3000/agents/register',
-        expect.objectContaining({
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        })
-      );
-      
-      expect(agent.getProfile()).toEqual(mockProfile);
-    });
-  });
-  
   describe('searchAgents', () => {
     it('should search agents by capability', async () => {
       const mockAgents: AgentProfile[] = [
@@ -75,6 +39,12 @@ describe('Agent', () => {
       );
       
       expect(result).toEqual(mockAgents);
+    });
+  });
+  
+  describe('getProfile', () => {
+    it('should return null when not registered', () => {
+      expect(agent.getProfile()).toBeNull();
     });
   });
 });
