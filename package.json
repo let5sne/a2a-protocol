@@ -8,6 +8,12 @@
     "server": "ts-node src/server.ts",
     "agent:a": "ts-node src/examples/agent-a.ts",
     "agent:b": "ts-node src/examples/agent-b.ts",
+    "agent:market": "ts-node src/examples/market-agent.ts",
+    "agent:data": "ts-node src/examples/data-agent.ts",
+    "agent:orchestrator": "ts-node src/examples/orchestrator.ts",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
     "test": "echo \"No tests yet\""
   },
   "keywords": ["agent", "a2a", "ai", "protocol"],

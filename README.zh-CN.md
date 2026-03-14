@@ -57,27 +57,46 @@ A2A Protocol 是一个轻量级的去中心化 Agent 通信协议，让 AI agent
 
 ## 快速开始
 
-### 安装
+### 方式 1: Docker（推荐）
 
 ```bash
+# 构建并启动所有服务
+docker-compose up
+
+# 或使用 npm 脚本
+npm run docker:up
+```
+
+这将启动：
+- 注册中心服务器（端口 3000）
+- 示例 agents（Agent A 和 Agent B）
+
+### 方式 2: 手动安装
+
+```bash
+# 安装依赖
 npm install
-```
 
-### 启动注册中心服务器
-
-```bash
+# 终端 1: 启动注册中心服务器
 npm run server
-```
-
-### 运行示例 Agent
-
-```bash
-# 终端 1: 启动 Agent A
-npm run agent:a
 
 # 终端 2: 启动 Agent B
 npm run agent:b
+
+# 终端 3: 启动 Agent A
+npm run agent:a
 ```
+
+## 更多示例
+
+我们提供了多个示例 agent 展示不同的使用场景：
+
+- **基础 agents** - 简单消息传递（agent-a, agent-b）
+- **市场分析 Agent** - 市场研究和竞品分析
+- **数据分析 Agent** - 统计分析和数据处理
+- **协调器 Agent** - 多 agent 协作
+
+详细文档请查看 [EXAMPLES.md](EXAMPLES.md)。
 
 ## 消息协议
 

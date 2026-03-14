@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  registry:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  agent-a:
+    build: .
+    command: node dist/examples/agent-a.js
+    depends_on:
+      - registry
+    environment:
+      - REGISTRY_URL=http://registry:3000
+    restart: unless-stopped
+
+  agent-b:
+    build: .
+    command: node dist/examples/agent-b.js
+    depends_on:
+      - registry
+    environment:
+      - REGISTRY_URL=http://registry:3000
+    restart: unless-stopped

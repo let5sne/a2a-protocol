@@ -57,27 +57,46 @@ Real-time communication via WebSocket:
 
 ## Quick Start
 
-### Installation
+### Option 1: Docker (Recommended)
 
 ```bash
+# Build and start all services
+docker-compose up
+
+# Or use npm scripts
+npm run docker:up
+```
+
+This will start:
+- Registry server on port 3000
+- Example agents (Agent A and Agent B)
+
+### Option 2: Manual Setup
+
+```bash
+# Install dependencies
 npm install
-```
 
-### Start Registry Server
-
-```bash
+# Terminal 1: Start Registry Server
 npm run server
-```
-
-### Run Example Agents
-
-```bash
-# Terminal 1: Start Agent A
-npm run agent:a
 
 # Terminal 2: Start Agent B
 npm run agent:b
+
+# Terminal 3: Start Agent A
+npm run agent:a
 ```
+
+## More Examples
+
+We have several example agents demonstrating different use cases:
+
+- **Basic agents** - Simple message passing (agent-a, agent-b)
+- **Market Analysis Agent** - Market research and competitor analysis
+- **Data Analysis Agent** - Statistical analysis and data processing
+- **Orchestrator Agent** - Multi-agent coordination
+
+See [EXAMPLES.md](EXAMPLES.md) for detailed documentation.
 
 ## Message Protocol
 
