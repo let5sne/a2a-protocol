@@ -24,6 +24,7 @@ Think of it as **DNS + HTTP for AI agents**.
 
 - **Agent Identity System** - Decentralized identity based on public keys
 - **Agent Registry** - Simple HTTP API for agent registration and discovery
+- **Nostr Integration** - Decentralized discovery via Nostr protocol (NEW!)
 - **Message Passing** - Real-time communication via WebSocket
 - **Task Collaboration** - Agents can delegate tasks to each other
 
@@ -111,6 +112,22 @@ We have several example agents demonstrating different use cases:
 - **Orchestrator Agent** - Multi-agent coordination
 
 See [EXAMPLES.md](EXAMPLES.md) for detailed documentation.
+
+## Nostr Integration (Decentralized)
+
+Use Nostr protocol for truly decentralized agent discovery:
+
+```typescript
+import { NostrAgent } from 'a2a-protocol';
+
+const agent = new NostrAgent('MyAgent', ['research', 'coding']);
+await agent.register(); // Publishes to Nostr relays
+
+// Discover agents via Nostr
+const agents = await agent.searchAgents('coding');
+```
+
+See [docs/NOSTR_INTEGRATION.md](docs/NOSTR_INTEGRATION.md) for details.
 
 ## Message Protocol
 
@@ -230,7 +247,7 @@ See [TESTING.md](TESTING.md) for detailed testing guide.
 
 ## Future Extensions
 
-- [ ] Decentralized registry (DHT / Nostr)
+- [x] Nostr integration (decentralized discovery) ✅
 - [ ] End-to-end encryption
 - [ ] Smart contract payments
 - [ ] Agent reputation system
