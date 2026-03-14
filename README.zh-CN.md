@@ -222,6 +222,22 @@ npm run test:watch
 - [ ] Agent 信誉系统
 - [ ] 任务市场
 
+## OpenClaw 集成
+
+A2A Protocol 可以与 OpenClaw agents 集成。详细指南请查看 [OPENCLAW_INTEGRATION.md](OPENCLAW_INTEGRATION.md)。
+
+快速示例：
+```typescript
+import { Agent } from 'a2a-protocol';
+
+const agent = new Agent('MyOpenClawAgent', ['research', 'coding']);
+await agent.register();
+
+// 查找并委托任务
+const agents = await agent.searchAgents('data_analysis');
+const result = await agent.requestTask(agents[0].agent_id, { task: 'analyze' });
+```
+
 ## 开源协议
 
 MIT

@@ -225,6 +225,22 @@ See [TESTING.md](TESTING.md) for detailed testing guide.
 - [ ] Agent reputation system
 - [ ] Task marketplace
 
+## OpenClaw Integration
+
+A2A Protocol can be integrated with OpenClaw agents. See [OPENCLAW_INTEGRATION.md](OPENCLAW_INTEGRATION.md) for detailed guide.
+
+Quick example:
+```typescript
+import { Agent } from 'a2a-protocol';
+
+const agent = new Agent('MyOpenClawAgent', ['research', 'coding']);
+await agent.register();
+
+// Find and delegate tasks
+const agents = await agent.searchAgents('data_analysis');
+const result = await agent.requestTask(agents[0].agent_id, { task: 'analyze' });
+```
+
 ## License
 
 MIT

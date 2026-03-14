@@ -11,6 +11,7 @@
     "agent:market": "ts-node src/examples/market-agent.ts",
     "agent:data": "ts-node src/examples/data-agent.ts",
     "agent:orchestrator": "ts-node src/examples/orchestrator.ts",
+    "agent:openclaw": "ts-node src/examples/openclaw-integration.ts",
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
