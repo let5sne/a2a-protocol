@@ -1,4 +1,4 @@
-import { SimplePool, Event, getPublicKey, getEventHash, signEvent } from 'nostr-tools';
+import { SimplePool, Event, getPublicKey, getEventHash, finalizeEvent, generateSecretKey } from 'nostr-tools';
 import { AgentProfile, Message, TaskRequest, TaskResponse } from './types';
 
 const DEFAULT_RELAYS = [
@@ -9,7 +9,7 @@ const DEFAULT_RELAYS = [
 
 export class NostrAgent {
   private pool: SimplePool;
-  private privateKey: string;
+  private privateKey: Uint8Array;
   private publicKey: string;
   private profile: AgentProfile | null = null;
   private relays: string[];
@@ -17,25 +17,18 @@ export class NostrAgent {
   constructor(
     private name: string,
     private capabilities: string[],
-    privateKey?: string,
+    privateKey?: Uint8Array,
     relays?: string[]
   ) {
     this.pool = new SimplePool();
-    this.privateKey = privateKey || this.generatePrivateKey();
+    this.privateKey = privateKey || generateSecretKey();
     this.publicKey = getPublicKey(this.privateKey);
     this.relays = relays || DEFAULT_RELAYS;
   }
 
-  private generatePrivateKey(): string {
-    const bytes = new Uint8Array(32);
-    crypto.getRandomValues(bytes);
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-
   async register(): Promise<void> {
-    const event: Event = {
+    const eventTemplate = {
       kind: 30078,
-      pubkey: this.publicKey,
       created_at: Math.floor(Date.now() / 1000),
       tags: [
         ['d', 'agent_profile'],
@@ -44,15 +37,11 @@ export class NostrAgent {
       ],
       content: JSON.stringify({
         description: `A2A Agent: ${this.name}`
-      }),
-      id: '',
-      sig: ''
+      })
     };
 
-    event.id = getEventHash(event);
-    event.sig = signEvent(event, this.privateKey);
-
-    await this.pool.publish(this.relays, event);
+    const signedEvent = finalizeEvent(eventTemplate, this.privateKey);
+    await this.pool.publish(this.relays, signedEvent);
 
     this.profile = {
       agent_id: this.publicKey,
