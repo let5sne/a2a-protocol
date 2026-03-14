@@ -196,6 +196,23 @@ console.log('任务结果:', result);
 - **Express** - HTTP 服务器
 - **ws** - WebSocket 库
 - **TypeScript** - 类型安全
+- **Jest** - 测试框架
+- **Docker** - 容器化
+
+## 测试
+
+```bash
+# 运行测试
+npm test
+
+# 运行测试并生成覆盖率报告
+npm run test:coverage
+
+# 监听模式运行测试
+npm run test:watch
+```
+
+详细测试指南请查看 [TESTING.md](TESTING.md)。
 
 ## 未来扩展
 

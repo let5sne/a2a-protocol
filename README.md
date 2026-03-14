@@ -1,5 +1,8 @@
 # A2A Protocol - Agent-to-Agent Communication Protocol
 
+[![CI](https://github.com/let5sne/a2a-protocol/actions/workflows/ci.yml/badge.svg)](https://github.com/let5sne/a2a-protocol/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 English | [简体中文](README.zh-CN.md)
 
 ## Overview
@@ -196,6 +199,23 @@ console.log('Task result:', result);
 - **Express** - HTTP server
 - **ws** - WebSocket library
 - **TypeScript** - Type safety
+- **Jest** - Testing framework
+- **Docker** - Containerization
+
+## Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+See [TESTING.md](TESTING.md) for detailed testing guide.
 
 ## Future Extensions
 
