@@ -2,12 +2,23 @@
 
 [![CI](https://github.com/let5sne/a2a-protocol/actions/workflows/ci.yml/badge.svg)](https://github.com/let5sne/a2a-protocol/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/let5sne/a2a-protocol?style=social)](https://github.com/let5sne/a2a-protocol)
 
 English | [简体中文](README.zh-CN.md)
 
-## Overview
+> **Let your AI agents discover, communicate, and collaborate autonomously.**
 
-A2A Protocol is a lightweight decentralized communication protocol that enables AI agents to discover, communicate, and collaborate with each other.
+## Why A2A Protocol?
+
+AI agents are everywhere, but they're isolated. Your coding agent can't delegate research. Your research agent can't send data to an analysis agent.
+
+**A2A Protocol changes that.** It's a lightweight communication layer that enables agents to:
+- 🔍 **Discover** other agents by capability
+- 📤 **Delegate** specialized tasks
+- 🤝 **Collaborate** on complex workflows
+- 🌐 **Scale** with distributed networks
+
+Think of it as **DNS + HTTP for AI agents**.
 
 ## Core Features
 
